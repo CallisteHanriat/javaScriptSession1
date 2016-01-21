@@ -1,0 +1,17 @@
+table {
+    width: 40%;
+    border: solid 1px;
+    display: block;
+    margin: auto;
+    padding: 0px;
+}
+
+td {
+    border: solid 1px;
+    width: 25%;
+    margin: 0px;
+}
+
+.textContains{
+  text-align: center;
+}
