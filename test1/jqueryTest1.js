@@ -11,4 +11,9 @@ $(function() {
           backgroundColor: "white"
         }, 250 );
    });
+   
+   $('<button/>').html('add')
+           .css({'margin':'auto',
+            'display':'block'})
+           .appendTo('body');
 });
