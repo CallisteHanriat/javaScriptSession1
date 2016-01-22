@@ -2,11 +2,13 @@ $(function() {
    $('title').html('test1');
    $('.caseOfText').mouseover(function(){
         var item=$(this);
-        item.css({'background-color':'yellow'});
+        item.animate({'background-color':'yellow'}, 250);
    }); 
    
    $('.caseOfText').mouseleave(function() {
       var item=$(this);
-      item.css({'background-color':'rgb(255,255,255)'});
+      item.animate({
+          backgroundColor: "white"
+        }, 250 );
    });
 });
