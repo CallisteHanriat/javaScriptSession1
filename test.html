@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script>
+	function myFunction(){
+		var nb1 = document.getElementById('val1').value,
+		    nb2 = document.getElementById('val2').value;
+		var test = document.createElement("span");
+		$('.test').html(parseInt(nb1) + parseInt(nb2));
+		alert(parseInt(nb1) + parseInt(nb2));
+	}
+	</script>
+	<form>
+	val1:<br>
+	<input type="number" name="val1" id="val1">
+	<br>
+	val2:<br>
+	<input type="number" name="val2" id="val2">
+	<input type ="button" id = "b1" value="Calculer" onclick="myFunction()">
+	<span id="test"></span>
+	</form> 
+</html>
