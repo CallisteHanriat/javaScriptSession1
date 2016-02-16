@@ -5,8 +5,8 @@ var bouttonsSimples = document.getElementsByClassName("bouton_simple");
 var bouttonsLibres = document.getElementsByClassName("bouton_libre");
 
 function moveZoneAffichageHaut(zone) {
-    var calc = document.getElementById("calc");
-    calc.firstElementChild = zone;
+    var div = document.getElementById("ligne_affichage");
+    div.appendChild(zone);
     zone.setAttribute("ondblclick", "moveZoneAffichageBas(this)");
 }
 
