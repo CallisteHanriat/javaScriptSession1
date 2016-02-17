@@ -4,6 +4,25 @@ var editable = false;
 var bouttonsSimples = document.getElementsByClassName("bouton_simple");
 var bouttonsLibres = document.getElementsByClassName("bouton_libre");
 
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+} 
+
 function moveZoneAffichageHaut(zone) {
     var div = document.getElementById("ligne_affichage");
     div.appendChild(zone);
@@ -70,9 +89,26 @@ function fix(bouton){
     bouton.setAttribute("ondblclick", "edit(this)");
 }
 
+
+
+/**
+ * la fonction ajoute un cookie sur le navigateur pour conserver le bouton du site
+ * @param {type} bouton le bouton sur lequel on veut rajouter le cookie
+ * @returns {undefined}
+ */
+function save(bouton) {
+    setCookie(bouton.id, bouton.value, 2);
+}
+
+/**
+ * cette fonction met le bouton sur lequel on a double cliqué en mode textuel
+ * @param {type} bouton le bouton sur lequel on a double cliqué
+ * @returns {undefined}
+ */
 function edit(bouton) {
     bouton.setAttribute("type", "text");
     bouton.setAttribute("ondblclick", "fix(this)");
+    bouton.setAttribute("onblur", "save(this)");
 }
 
 function mode_calcul(buttonE) {
@@ -85,9 +121,16 @@ function mode_calcul(buttonE) {
     }    
 }
 
+/**
+ * fonction appellée au tout début lors du onload
+ * @returns {undefined}
+ */
 function init() {
     var tableBouton = document.getElementsByClassName("bouton_simple");
     for (var i = 0; i < tableBouton.length; i++) {
         tableBouton[i].setAttribute("onClick", "affiche(this)");
+    }
+    for (var i = 0; i < bouttonsLibres.length; i++) {
+        bouttonsLibres[i].value = getCookie(bouttonsLibres[i].id);
     }
 }
